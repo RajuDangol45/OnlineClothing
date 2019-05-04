@@ -11,6 +11,7 @@ import android.widget.Button;
 public class Dashboard extends AppCompatActivity {
 
     private Button logout;
+    private Button addItem;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
@@ -23,7 +24,8 @@ public class Dashboard extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences("users", Context.MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
 
-        logout.findViewById(R.id.activity_dashboard_logout);
+        logout = findViewById(R.id.activity_dashboard_logout);
+        addItem = findViewById(R.id.activity_dashboard_addItem);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +33,15 @@ public class Dashboard extends AppCompatActivity {
                 sharedPreferencesEditor.putBoolean("isLoggedIn", false);
                 sharedPreferencesEditor.apply();
                 Intent intent = new Intent(getApplicationContext(), LoginAndRegistration.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddItem.class);
                 startActivity(intent);
                 finish();
             }

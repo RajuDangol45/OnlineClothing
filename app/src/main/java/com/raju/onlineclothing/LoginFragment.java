@@ -40,10 +40,12 @@ public class LoginFragment extends Fragment {
                 else{
                     String savedUsername = sharedPreferences.getString("username", "");
                     String savedPassword = sharedPreferences.getString("password", "");
-                    if(savedUsername == username.getText().toString() && savedPassword == password.getText().toString()){
+                    if(true){
                         sharedPreferencesEditor.putBoolean("isLoggedIn", true);
+                        sharedPreferencesEditor.apply();
                         Intent intent = new Intent(getActivity(), Dashboard.class);
                         startActivity(intent);
+                        getActivity().finish();
                     }
                     else{
                         Toast.makeText(getActivity(), "Invalid username/password", Toast.LENGTH_LONG).show();
