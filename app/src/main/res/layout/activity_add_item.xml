@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:text="Add Item"
         android:layout_gravity="center"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:id="@+id/activity_add_item_addItem"/>
 
 </LinearLayout>
