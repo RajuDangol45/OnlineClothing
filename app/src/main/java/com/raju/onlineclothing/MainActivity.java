@@ -20,10 +20,12 @@ public class MainActivity extends AppCompatActivity {
         if(sharedPreferences.getBoolean("isLoggedIn", false)){
             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
             startActivity(intent);
+            finish();
         }
         else{
             Intent intent = new Intent(getApplicationContext(), LoginAndRegistration.class);
             startActivity(intent);
+            finish();
         }
     }
 }
