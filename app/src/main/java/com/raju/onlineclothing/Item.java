@@ -44,4 +44,8 @@ public class Item {
         this.itemImageName = itemImageName;
         this.itemDescription = itemDescription;
     }
+
+    public Item(){
+
+    }
 }

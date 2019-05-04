@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class AddItem extends AppCompatActivity {
 
@@ -22,7 +25,7 @@ public class AddItem extends AppCompatActivity {
     private EditText itemImageName;
     private EditText itemDescription;
 
-    private String fileName = "items";
+    private String fileName = "items.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +47,23 @@ public class AddItem extends AppCompatActivity {
                 }
                 else{
                     FileOutputStream fileOutputStream;
-                    String fileContents;
+                    String fileContents = "";
 
-                    fileContents = "\n" + item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
+                    try {
+                        FileInputStream fileInputStream = getApplicationContext().openFileInput("items.txt");
+                        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            if(!line.isEmpty()){
+                                fileContents = line + "\n" + item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
+                            }
+                        }
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     try {
                         fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
                         fileOutputStream.write(fileContents.getBytes());
