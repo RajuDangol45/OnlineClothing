@@ -46,7 +46,9 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.MyViewHold
     public void onBindViewHolder(@NonNull final MyViewHolder viewHolder, int i) {
         final Item item = items.get(i);
         viewHolder.itemName.setText(item.getItemName());
-        viewHolder.itemImage.setImageResource(R.drawable.prana_1);
+        String imageName = "@drawable/" + item.getItemImageName();
+        int imageResource = viewHolder.itemImage.getContext().getResources().getIdentifier(imageName, null, viewHolder.itemImage.getContext().getPackageName());
+        viewHolder.itemImage.setImageResource(imageResource);
 
         viewHolder.itemImage.setOnClickListener(new View.OnClickListener() {
             @Override

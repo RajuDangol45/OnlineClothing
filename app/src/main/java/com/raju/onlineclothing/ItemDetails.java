@@ -28,7 +28,11 @@ public class ItemDetails extends AppCompatActivity {
         Intent intent = getIntent();
         itemName.setText(intent.getStringExtra("itemName"));
         itemPrice.setText(intent.getStringExtra("itemPrice"));
-        itemImageName.setImageResource(R.drawable.prana_1);
+
+        String imageName = "@drawable/" + intent.getStringExtra("itemImageName");
+        int imageResource = getApplicationContext().getResources().getIdentifier(imageName, null, getApplicationContext().getPackageName());
+        itemImageName.setImageResource(imageResource);
+
         itemDescription.setText(intent.getStringExtra("itemDescription"));
     }
 }
