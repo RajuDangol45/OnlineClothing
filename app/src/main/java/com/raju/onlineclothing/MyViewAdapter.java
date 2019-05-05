@@ -44,9 +44,21 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder viewHolder, int i) {
-        Item item = items.get(i);
+        final Item item = items.get(i);
         viewHolder.itemName.setText(item.getItemName());
         viewHolder.itemImage.setImageResource(R.drawable.prana_1);
+
+        viewHolder.itemImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ItemDetails.class);
+                intent.putExtra("itemName", item.getItemName());
+                intent.putExtra("itemPrice", item.getItemPrice());
+                intent.putExtra("itemImageName", item.getItemImageName());
+                intent.putExtra("itemDescription", item.getItemDescription());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

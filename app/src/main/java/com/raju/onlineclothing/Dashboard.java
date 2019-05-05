@@ -97,9 +97,6 @@ public class Dashboard extends AppCompatActivity {
                         else if (index == 2){
                             item.setItemImageName(value);
                         }
-                        else{
-                            item.setItemDescription(value);
-                        }
                         index += 1;
                         i++;
                         value = "";
@@ -108,6 +105,7 @@ public class Dashboard extends AppCompatActivity {
                         value = value + c;
                     }
                 }
+                item.setItemDescription(value);
                 items.add(item);
             }
         } catch (FileNotFoundException e) {

@@ -40,7 +40,9 @@ public class LoginFragment extends Fragment {
                 else{
                     String savedUsername = sharedPreferences.getString("username", "");
                     String savedPassword = sharedPreferences.getString("password", "");
-                    if(true){
+                    String providedUsername = username.getText().toString();
+                    String providedPassword = password.getText().toString();
+                    if(savedUsername.equals(providedUsername) && savedPassword.equals(savedPassword)){
                         sharedPreferencesEditor.putBoolean("isLoggedIn", true);
                         sharedPreferencesEditor.apply();
                         Intent intent = new Intent(getActivity(), Dashboard.class);
