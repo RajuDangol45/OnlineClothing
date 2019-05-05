@@ -1,6 +1,7 @@
 package com.raju.onlineclothing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -54,15 +55,10 @@ public class AddItem extends AppCompatActivity {
                         InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
                         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                         String line;
-                        String line1 = "";
                         while ((line = bufferedReader.readLine()) != null) {
-                            line1 = line1 + line + "\n";
-                        }
-                        if(line1 != null){
-                            fileContents = line1 + item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
-                        }
-                        else{
-                            fileContents = item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
+                            if(!line.isEmpty()){
+                                fileContents = line + "\n" + item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
+                            }
                         }
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -75,6 +71,9 @@ public class AddItem extends AppCompatActivity {
                         fileOutputStream.close();
                         Toast.makeText(getApplicationContext(), "Add item successful", Toast.LENGTH_LONG).show();
                         resetValues();
+                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                        startActivity(intent);
+                        finish();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
