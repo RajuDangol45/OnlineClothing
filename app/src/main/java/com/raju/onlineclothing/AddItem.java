@@ -43,10 +43,9 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Item item = new Item(itemName.getText().toString(), itemPrice.getText().toString(), itemImageName.getText().toString(), itemDescription.getText().toString());
-                if(item.getItemName().isEmpty() || item.getItemPrice().isEmpty() || item.getItemImageName().isEmpty() || item.getItemDescription().isEmpty()){
+                if (item.getItemName().isEmpty() || item.getItemPrice().isEmpty() || item.getItemImageName().isEmpty() || item.getItemDescription().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Empty values are not allowed", Toast.LENGTH_LONG).show();
-                }
-                else{
+                } else {
                     FileOutputStream fileOutputStream;
                     String fileContents = "";
 
@@ -55,10 +54,17 @@ public class AddItem extends AppCompatActivity {
                         InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
                         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                         String line;
+                        String line1 = "";
                         while ((line = bufferedReader.readLine()) != null) {
-                            if(!line.isEmpty()){
+                            if (!line.isEmpty()) {
+                                line1 = line1 + line + "\n";
                                 fileContents = line + "\n" + item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
                             }
+                        }
+                        if (line1 != null) {
+                            fileContents = line1 + item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
+                        } else {
+                            fileContents = item.getItemName() + "->" + item.getItemPrice() + "->" + item.getItemImageName() + "->" + item.getItemDescription();
                         }
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -84,7 +90,7 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
-    private void resetValues(){
+    private void resetValues() {
         itemName.setText("");
         itemDescription.setText("");
         itemImageName.setText("");
