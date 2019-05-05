@@ -13,6 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/design_default_color_primary"
         android:id="@+id/activity_item_details_itemName"/>
 
     <TextView
@@ -23,6 +24,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/design_default_color_primary"
         android:id="@+id/activity_item_details_itemPrice"/>
 
     <TextView
@@ -43,6 +45,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/design_default_color_primary"
         android:id="@+id/activity_item_details_itemDescription"/>
 
 </LinearLayout>
